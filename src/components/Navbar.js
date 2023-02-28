@@ -2,27 +2,32 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Squares2X2Icon, BellIcon } from '@heroicons/react/24/solid'
-
+import logo from '../assets/logo.svg'
+import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
     <Disclosure as='nav' className='bg-white shadow'>
       {({ open }) => (
         <>
-          <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+          <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-'>
             <div className='flex h-16 justify-between'>
               <div className='flex'>
                 <div className='flex flex-shrink-0 items-center'>
                   <img
                     className='block h-8 w-auto lg:hidden'
-                    src='https://flowbite.com/docs/images/logo.svg'
+                    src={logo}
                     alt='Your Company'
                   />
+
                   <img
                     className='hidden h-8 w-auto lg:block'
-                    src='https://flowbite.com/docs/images/logo.svg'
+                    src={logo}
                     alt='Your Company'
                   />
-                  <p className=' ml-5 font-bold text-lg'>Arbit Blog</p>
+                  <Link to='/'>
+                    {' '}
+                    <p className=' ml-5 font-bold text-lg'>Arbit Blog</p>
+                  </Link>
                 </div>
               </div>
               <div className='hidden sm:ml-6 sm:flex sm:items-center'>
