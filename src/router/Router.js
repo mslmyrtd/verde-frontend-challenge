@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Navbar from '../componnets/Navbar'
+import Navbar from '../components/Navbar'
 import { Details, ErrorPage, NewPost, UpdatePost, Dashboard } from '../pages'
 
 const AppRouter = () => {
