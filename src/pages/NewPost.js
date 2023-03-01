@@ -52,12 +52,13 @@ const NewPost = () => {
             >
               Message:
             </label>
-            <input
+            <textarea
               id='body'
               name='body'
+              rows='10'
               value={body}
               onChange={(e) => setBody(e.target.value)}
-              className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-56 block mr-auto mr-auto'
+              className='"block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"'
             />
           </div>
 

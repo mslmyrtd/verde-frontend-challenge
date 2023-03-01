@@ -19,18 +19,19 @@ const postSlice = createSlice({
     error: null,
   },
   reducers: {},
-  extraReducers: {
-    [fetchPostById.pending]: (state) => {
-      state.status = 'loading'
-    },
-    [fetchPostById.fulfilled]: (state, action) => {
-      state.status = 'succeeded'
-      state.post = action.payload
-    },
-    [fetchPostById.rejected]: (state, action) => {
-      state.status = 'failed'
-      state.error = action.error.message
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchPostById.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(fetchPostById.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.post = action.payload
+      })
+      .addCase(fetchPostById.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
   },
 })
 
