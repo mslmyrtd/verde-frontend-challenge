@@ -27,7 +27,7 @@ const UpdatePost = () => {
       body,
     }
     dispatch(updatePost(updatedPost))
-    navigate(`/details/${id}`)
+    navigate('/')
   }
 
   return (
@@ -38,7 +38,7 @@ const UpdatePost = () => {
         </p>
         <form
           onSubmit={handleSubmit}
-          className='bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 dark:bg-slate-200'
+          className='bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 dark:bg-slate-200'
         >
           <div>
             <label
@@ -53,7 +53,7 @@ const UpdatePost = () => {
               name='title'
               value={title}
               onChange={handleTitleChange}
-              className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline h-15'
+              className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline h-15 mb-5'
             />
           </div>
           <div className='mb-8'>
@@ -61,7 +61,7 @@ const UpdatePost = () => {
               htmlFor='body'
               className='block text-gray-700 text-sm font-bold '
             >
-              Body:
+              Message:
             </label>
             <input
               id='body'
