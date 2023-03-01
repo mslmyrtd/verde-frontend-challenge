@@ -35,8 +35,13 @@ export const postsSlice = createSlice({
     posts: [],
     status: 'idle',
     error: null,
+    currentPost: null,
   },
-  reducers: {},
+  reducers: {
+    setCurrentPost: (state, action) => {
+      state.currentPost = action.payload
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPosts.pending, (state) => {
@@ -44,7 +49,7 @@ export const postsSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.posts = action.payload
+        if (state.posts.length === 0) state.posts = action.payload
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = 'failed'
@@ -55,16 +60,20 @@ export const postsSlice = createSlice({
       })
       .addCase(updatePost.fulfilled, (state, action) => {
         const postIndex = state.posts.findIndex(
-          (post) => post.id === action.payload.id
+          (post) => Number(post.id) === Number(action.payload.id)
         )
         if (postIndex !== -1) {
           state.posts[postIndex] = action.payload
         }
       })
       .addCase(deletePost.fulfilled, (state, action) => {
-        state.posts = state.posts.filter((post) => post.id !== action.payload)
+        state.posts = state.posts.filter(
+          (post) => Number(post.id) !== Number(action.payload)
+        )
       })
   },
 })
-
+export const { setCurrentPost } = postsSlice.actions
+export const selectCurrentPost = (state) => state.post.currentPost
+export const selectTotalAmount = (state) => state.post.posts.length
 export default postsSlice.reducer

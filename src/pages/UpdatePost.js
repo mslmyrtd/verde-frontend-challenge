@@ -1,16 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { updatePost } from '../features/post/postSlice'
+import { selectCurrentPost, updatePost } from '../features/post/postSlice'
 
 const UpdatePost = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  // const post = useSelector((state) =>
-  //   state.post.post?.find((post) => post.id === Number(id))
-  // )
-  const post = useSelector((state) => state.singlePost.post)
+  const post = useSelector(selectCurrentPost)
 
   const [title, setTitle] = useState(post?.title)
   const [body, setBody] = useState(post?.body)
@@ -61,12 +58,13 @@ const UpdatePost = () => {
             >
               Message:
             </label>
-            <input
+            <textarea
               id='body'
               name='body'
               value={body}
               onChange={handleBodyChange}
-              className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-56 block mr-auto mr-auto'
+              rows='10'
+              className='"block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"'
             />
           </div>
 

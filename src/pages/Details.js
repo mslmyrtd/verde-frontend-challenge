@@ -9,16 +9,13 @@ import {
   PencilIcon,
   ArrowLeftIcon,
 } from '@heroicons/react/24/outline'
-import { deletePost } from '../features/post/postSlice'
+import { deletePost, selectCurrentPost } from '../features/post/postSlice'
 
 const Details = () => {
   const { id } = useParams()
-  const post = useSelector((state) => state.singlePost.post)
+  const post = useSelector(selectCurrentPost)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(fetchPostById(id))
-  }, [dispatch, id])
   const handleDeleteClick = () => {
     dispatch(deletePost(id))
     navigate('/')

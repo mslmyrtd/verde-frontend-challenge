@@ -4,7 +4,11 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Squares2X2Icon, BellIcon } from '@heroicons/react/24/solid'
 import logo from '../assets/logo.svg'
 import { Link } from 'react-router-dom'
+import { selectTotalAmount } from '../features/post/postSlice'
+import { useSelector } from 'react-redux'
 const Navbar = () => {
+  const amount = useSelector(selectTotalAmount)
+
   return (
     <Disclosure as='nav' className='bg-white shadow sticky top-0 '>
       {({ open }) => (
@@ -37,7 +41,7 @@ const Navbar = () => {
                     10
                   </span> */}
                   <span className='absolute top-3 bg-green-300 text-gray-500  rounded text-xs w-4 '>
-                    10
+                    {amount}
                   </span>
                 </p>
                 <button
