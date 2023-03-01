@@ -33,7 +33,7 @@
 
 $ git clone https://github.com/mslmyrtd/verde-frontend-challenge.git
 
-$ cd SmartPulse
+$ cd verde-frontend-challenge
 
 ```
 
