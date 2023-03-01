@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchPosts } from '../features/post/postSlice'
 import { useEffect } from 'react'
 import PostItem from './PostItem'
+
 const CardContent = () => {
   const dispatch = useDispatch()
 

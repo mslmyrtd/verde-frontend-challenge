@@ -1,16 +1,15 @@
 import React from 'react'
-import { useParams, useNavigate, Link, Navigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { PlusIcon } from '@heroicons/react/20/solid'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { fetchPostById } from '../features/post/singlePostSlice'
 import { TrashIcon, PencilIcon } from '@heroicons/react/24/outline'
-import { deletePost, fetchPosts } from '../features/post/postSlice'
+import { deletePost } from '../features/post/postSlice'
 
 const Details = () => {
   const { id } = useParams()
   const post = useSelector((state) => state.singlePost.post)
-  const status = useSelector((state) => state.singlePost.status)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   useEffect(() => {
@@ -23,19 +22,21 @@ const Details = () => {
   }
   return (
     <>
-      <div className='border-b border-gray-600 bg-white px-4 py-5 sm:px-6 w-4/6 shadow-lg'>
+      <div className='border-b border-gray-600 bg-white px-4 py-5 sm:px-6 w-2/3 ml-auto mr-auto shadow-lg'>
         <div className='-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap'>
           <h3 className='text-base font-semibold leading-6 text-gray-900'>
             Posts
           </h3>
           <div className='ml-4 mt-4 flex-shrink-0'>
-            <button
-              type='button'
-              className='relative inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-            >
-              <PlusIcon className='-ml-1 mr-2 h-5 w-5' aria-hidden='true' />
-              <span>New Post</span>
-            </button>
+            <Link to='/new'>
+              <button
+                type='button'
+                className='relative inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2  font-medium text-white shadow-sm hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2  sm:px-1 text-sm'
+              >
+                <PlusIcon className='-ml-1 mr-1 h-5 w-5' aria-hidden='true' />
+                <span>New Post</span>
+              </button>
+            </Link>
           </div>
         </div>
         <div className='-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap'>
