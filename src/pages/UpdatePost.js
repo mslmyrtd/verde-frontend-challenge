@@ -12,10 +12,8 @@ const UpdatePost = () => {
   // )
   const post = useSelector((state) => state.singlePost.post)
 
-  console.log(post)
   const [title, setTitle] = useState(post?.title)
   const [body, setBody] = useState(post?.body)
-  console.log(title)
   const handleTitleChange = (event) => setTitle(event.target.value)
   const handleBodyChange = (event) => setBody(event.target.value)
 

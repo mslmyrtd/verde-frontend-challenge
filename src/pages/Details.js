@@ -4,7 +4,11 @@ import { PlusIcon } from '@heroicons/react/20/solid'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { fetchPostById } from '../features/post/singlePostSlice'
-import { TrashIcon, PencilIcon } from '@heroicons/react/24/outline'
+import {
+  TrashIcon,
+  PencilIcon,
+  ArrowLeftIcon,
+} from '@heroicons/react/24/outline'
 import { deletePost } from '../features/post/postSlice'
 
 const Details = () => {
@@ -16,13 +20,15 @@ const Details = () => {
     dispatch(fetchPostById(id))
   }, [dispatch, id])
   const handleDeleteClick = () => {
-    console.log(id)
     dispatch(deletePost(id))
     navigate('/')
   }
   return (
     <>
       <div className='border-b border-gray-600 bg-white px-4 py-5 sm:px-6 w-2/3 ml-auto mr-auto shadow-lg'>
+        <Link to='/'>
+          <ArrowLeftIcon className='-ml-1 mr-1 h-7 w-10  mb-5  rounded-full  bg-slate-300 ' />
+        </Link>
         <div className='-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap'>
           <h3 className='text-base font-semibold leading-6 text-gray-900'>
             Posts
