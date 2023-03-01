@@ -1,53 +1,70 @@
-import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-const postUrl = 'https://jsonplaceholder.typicode.com/posts?_limit=10'
-const postComment = 'https://jsonplaceholder.typicode.com/comments'
 
-const initialState = {
-  posts: [],
-  isLoading: false,
-  error: '',
-  amount: 0,
-}
-
-const getPostItems = createAsyncThunk('post/getPostItems', async () => {
-  try {
-    const resp = await axios(postUrl)
-    return resp.data
-  } catch (error) {
-    console.log(error)
-  }
-})
-const getComments = createAsyncThunk('post/getComments', async () => {
-  try {
-    const resp = await axios(postComment)
-    return resp.data
-  } catch (error) {
-    console.log(error)
-  }
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
+  const response = await axios.get(
+    'https://jsonplaceholder.typicode.com/posts?_limit=10'
+  )
+  return response.data
 })
 
-const postSlice = createSlice({
-  name: 'post',
-  initialState,
-  reducer: {},
+export const addPost = createAsyncThunk('posts/addPost', async (post) => {
+  const response = await axios.post(
+    'https://jsonplaceholder.typicode.com/posts',
+    post
+  )
+  return response.data
+})
+
+export const updatePost = createAsyncThunk('posts/updatePost', async (post) => {
+  const response = await axios.put(
+    `https://jsonplaceholder.typicode.com/posts/${post.id}`,
+    post
+  )
+  return response.data
+})
+
+export const deletePost = createAsyncThunk('posts/deletePost', async (id) => {
+  await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
+  return id
+})
+
+export const postsSlice = createSlice({
+  name: 'posts',
+  initialState: {
+    posts: [],
+    status: 'idle',
+    error: null,
+  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getPostItems.pending, (state) => {
-        state.isLoading = true
+      .addCase(fetchPosts.pending, (state) => {
+        state.status = 'loading'
       })
-      .addCase(getPostItems.fulfilled, (state, action) => {
-        state.isLoading = false
+      .addCase(fetchPosts.fulfilled, (state, action) => {
+        state.status = 'succeeded'
         state.posts = action.payload
       })
-      .addCase(getPostItems.rejected, (state, action) => {
-        state.isLoading = false
-        state.error = 'unknown error occured'
+      .addCase(fetchPosts.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
+      .addCase(addPost.fulfilled, (state, action) => {
+        state.posts.push(action.payload)
+      })
+      .addCase(updatePost.fulfilled, (state, action) => {
+        const postIndex = state.posts.findIndex(
+          (post) => post.id === action.payload.id
+        )
+        if (postIndex !== -1) {
+          state.posts[postIndex] = action.payload
+        }
+      })
+      .addCase(deletePost.fulfilled, (state, action) => {
+        state.posts = state.posts.filter((post) => post.id !== action.payload)
       })
   },
 })
 
-//const getIntitialData = createAction(`${post}/getInitialData`)
-export default postSlice.reducer
-
-export { getPostItems, getComments }
+export default postsSlice.reducer
