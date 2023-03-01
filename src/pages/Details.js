@@ -2,8 +2,7 @@ import React from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { PlusIcon } from '@heroicons/react/20/solid'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { fetchPostById } from '../features/post/singlePostSlice'
+
 import {
   TrashIcon,
   PencilIcon,
