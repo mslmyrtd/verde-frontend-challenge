@@ -14,8 +14,10 @@
 - #### Axios library
 - #### Redux/Toolkit
 - #### React-İcons
+- #### React hooks usage
 - #### Jsonplaceholder.typicode
 - #### React Router Dom
+- #### Tailwind-Css
 <details><summary><b>Project Description</b></summary><br>
   <p>Hello everybody,
  
@@ -70,7 +72,7 @@ Graphql routes starts with /graphql
 
 <details><summary><b>Deployment </b></summary><br>
 
-Deployed at Netlify @  https://react-github-usersapp.netlify.app/ <br>
+Deployed at Netlify @  https://verde-company.netlify.app <br>
 Graphql queries can be done at @
 
 Check collection with Postman : <br>
