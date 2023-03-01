@@ -6,7 +6,7 @@ import logo from '../assets/logo.svg'
 import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
-    <Disclosure as='nav' className='bg-white shadow'>
+    <Disclosure as='nav' className='bg-white shadow sticky top-0 '>
       {({ open }) => (
         <>
           <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-'>
