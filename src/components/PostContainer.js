@@ -1,109 +1,23 @@
 import React from 'react'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { getPostItems } from '../features/post/postSlice'
+import { useEffect } from 'react'
+import PostItem from './PostItem'
 const CardContent = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getPostItems())
+  }, [])
+  const { posts, isLoading } = useSelector((state) => state.post)
+  if (isLoading) {
+    return <p>Loading</p>
+  }
   return (
     <>
-      {' '}
-      <div class='max-w-sm rounded overflow-hidden  hover:shadow-lg cursor-pointer transition duration-700 ease-in-out'>
-        <div class='px-6 py-4'>
-          <div class='font-bold text-xl mb-2'>The Coldest Sunset</div>
-          <p class='text-gray-700 text-base'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
-        </div>
-      </div>
-      <div class='max-w-sm rounded overflow-hidden  hover:shadow-lg cursor-pointer transition duration-700 ease-in-out'>
-        <div class='px-6 py-4'>
-          <div class='font-bold text-xl mb-2'>The Coldest Sunset</div>
-          <p class='text-gray-700 text-base'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
-        </div>
-      </div>
-      <div class='max-w-sm rounded overflow-hidden  hover:shadow-lg cursor-pointer transition duration-700 ease-in-out'>
-        <div class='px-6 py-4'>
-          <div class='font-bold text-xl mb-2'>The Coldest Sunset</div>
-          <p class='text-gray-700 text-base'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
-        </div>
-      </div>
-      <div class='max-w-sm rounded overflow-hidden  hover:shadow-lg cursor-pointer transition duration-700 ease-in-out'>
-        <div class='px-6 py-4'>
-          <div class='font-bold text-xl mb-2'>The Coldest Sunset</div>
-          <p class='text-gray-700 text-base'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
-        </div>
-      </div>
-      <div class='max-w-sm rounded overflow-hidden  hover:shadow-lg cursor-pointer transition duration-700 ease-in-out'>
-        <div class='px-6 py-4'>
-          <div class='font-bold text-xl mb-2'>The Coldest Sunset</div>
-          <p class='text-gray-700 text-base'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
-        </div>
-      </div>
-      <div class='max-w-sm rounded overflow-hidden  hover:shadow-lg cursor-pointer transition duration-700 ease-in-out'>
-        <div class='px-6 py-4'>
-          <div class='font-bold text-xl mb-2'>The Coldest Sunset</div>
-          <p class='text-gray-700 text-base'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
-        </div>
-      </div>
-      <div class='max-w-sm rounded overflow-hidden  hover:shadow-lg cursor-pointer transition duration-700 ease-in-out'>
-        <div class='px-6 py-4'>
-          <div class='font-bold text-xl mb-2'>The Coldest Sunset</div>
-          <p class='text-gray-700 text-base'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
-        </div>
-      </div>
-      <div class='max-w-sm rounded overflow-hidden  hover:shadow-lg cursor-pointer transition duration-700 ease-in-out'>
-        <div class='px-6 py-4'>
-          <div class='font-bold text-xl mb-2'>The Coldest Sunset</div>
-          <p class='text-gray-700 text-base'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
-        </div>
-      </div>
-      <div class='max-w-sm rounded overflow-hidden  hover:shadow-lg cursor-pointer transition duration-700 ease-in-out'>
-        <div class='px-6 py-4'>
-          <div class='font-bold text-xl mb-2'>The Coldest Sunset</div>
-          <p class='text-gray-700 text-base'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
-        </div>
-      </div>
-      <div class='max-w-sm rounded overflow-hidden  hover:shadow-lg cursor-pointer transition duration-700 ease-in-out'>
-        <div class='px-6 py-4'>
-          <div class='font-bold text-xl mb-2'>The Coldest Sunset</div>
-          <p class='text-gray-700 text-base'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
-        </div>
-      </div>
+      {posts.map((post) => {
+        return <PostItem key={post.id} {...post} />
+      })}
     </>
   )
 }
